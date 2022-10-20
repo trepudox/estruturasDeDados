@@ -2,36 +2,59 @@ package data.structures;
 
 public class PilhaImpl<T> implements Pilha<T>{
 
+    private final T[] elements;
+    private int position;
+
     public PilhaImpl(int size) {
+        if(size < 0)
+            throw new RuntimeException("Tamanho nao pode ser menor que 0");
+
+        this.elements = (T[]) new Object[size];
+        this.position = -1;
     }
 
     @Override
     public void push(T data) {
+        if (isFull())
+            throw new RuntimeException("Pilha cheia");
 
+        elements[++position] = data;
     }
 
     @Override
     public T pop() {
-        return null;
+        if(isEmpty())
+            throw new RuntimeException("Pilha vazia");
+
+        T data = elements[position];
+        elements[position--] = null;
+        return data;
     }
 
     @Override
     public T top() {
-        return null;
+        if (isEmpty())
+            return null;
+
+        return elements[position];
     }
 
     @Override
     public int size() {
-        return 0;
+        return elements.length;
+    }
+
+    public int currentSize() {
+        return position + 1;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return position < 0;
     }
 
     @Override
     public boolean isFull() {
-        return false;
+        return position == (elements.length - 1);
     }
 }
