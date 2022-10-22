@@ -2,10 +2,9 @@ package data.structures;
 
 public interface ArvoreDeBuscaBinaria<T extends Comparable<T>> {
 
-
     void inserir(T data);
 
-    boolean exists(T dada);
+    boolean exists(T data);
 
     ArvoreDeBuscaBinaria<T> retrieve(T data);
 
@@ -16,4 +15,8 @@ public interface ArvoreDeBuscaBinaria<T extends Comparable<T>> {
     void posOrder();
 
     void bfs();
+
+    void readValue();
+
+    T getValue();
 }
